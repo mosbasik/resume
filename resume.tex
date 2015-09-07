@@ -1,60 +1,223 @@
 \author{Peter Henry}
 \title{Resume}
 
-\documentclass[10pt,letterpaper, full, draft]{article}
+
+%%% set paper and font size
+\documentclass[10pt,letterpaper, draft]{article}
+
+%%% remove header and footer
 \pagestyle{empty}
+
+%%% set margin spacing
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+
+%%% enable UTF-8 encoding
 \usepackage[utf8]{inputenc}
 
-\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
-
-\usepackage{hyperref}
-
+%%% ensure maximum compatibility (e.g., with Adobe Reader)
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 
-\newcommand{\keyvalue}[2]{\mbox{\emph{#1}: #2}}
+%%% enable hyperlinking with \href{url}{text}
+\usepackage{hyperref}
+
+\usepackage{lipsum}
+
+%%% enable package customization
+\usepackage{etoolbox}
+\AtBeginEnvironment{adjustwidth}{\partopsep0ex}
+
+%%% enable custom title formatting
+\usepackage{titlesec}
+\titleformat{\section}[block]{\bf}{}{0em}{}
+\titleformat{\subsection}[block]{\rm}{}{0em}{}
+% \titleformat{\subsubsection}[block]{\rm}{}{0em}{}
+\titlespacing*{\section} {0em}{1.5ex}{1ex}
+\titlespacing*{\subsection} {1em}{1ex}{1ex}
+% \titlespacing*{\subsubsection} {3em}{1ex}{1ex}
+
+
+%%% enable adjustable width environments
+\usepackage{changepage}
+
+%%% command definitions
+\newcommand{\keyvalue}[2]{\makebox[\textwidth][l]{\textbf{#1}: #2}}
+
+%%% environment definitions
+
+%%% custom project environment
+\newcommand{\pjtitle}[1]{\renewcommand{\givenpjtitle}{#1}}
+\newcommand{\pjtime}[1]{\renewcommand{\givenpjtime}{#1}}
+\newcommand{\pjbody}[1]{\renewcommand{\givenpjbody}{#1}}
+
+\newcommand{\givenpjtitle}{REQUIRED!}
+\newcommand{\givenpjtime}{REQUIRED!}
+\newcommand{\givenpjbody}{REQUIRED!}
+
+\newenvironment{projectenv}
+    {
+        \begin{adjustwidth}{1em}{0em}
+    }
+    {
+        % \hspace*{\parindent}
+        \textit{\givenpjtitle. \givenpjtime.}
+
+        \begin{minipage}[l]{\textwidth}
+            % \small
+            \givenpjbody%
+        \end{minipage}\\%
+
+        % \parbox[l]{.8\textwidth}{\givenpjbody}
+
+        % \begin{adjustwidth}{3em}{0em}
+        %     \givenpjbody
+        % \end{adjustwidth}
+        \end{adjustwidth}
+    }
+
+\newenvironment{sectionbody}
+    {
+        \begin{adjustwidth}{1em}{0em}
+    }
+    {
+        \end{adjustwidth}
+    }
 
 
 \begin{document}
 
 \noindent
-\begin{minipage}[c]{.33\textwidth}
-	\huge Peter Henry
-\end{minipage}%\noindent
-\begin{minipage}[c]{.33\textwidth}
-	\keyvalue{Email}{phenry@caltech.edu}
-	\keyvalue{Cell}{(817) 657-9341}
-	\keyvalue{Skype}{peter.henry7}
-\end{minipage}%\noindent
-\begin{minipage}[c]{.33\textwidth}
-	\keyvalue{GitHub}{\href{http://github.com/mosbasik}{github.com/mosbasik}}
-	\keyvalue{LinkedIn}{\href{http://linkedin.com/pub/peter-henry/66/646/83a}{linkedin.com/pub/peter-henry/66/646/83a}}
-	\keyvalue{Resume}{goo.gl/H4JVe2}
+\begin{minipage}[c]{.34\textwidth}
+    \textbf{\huge Peter Henry}
+\end{minipage}%
+\begin{minipage}[c]{.30\textwidth}
+    \keyvalue{Email}{phenry@caltech.edu}
+    \keyvalue{Cell}{(817) 657-9341}
+    \keyvalue{Skype}{peter.henry7}
+\end{minipage}%
+\begin{minipage}[c]{.35\textwidth}
+    \keyvalue{GitHub}{\href{http://github.com/mosbasik}{github.com/mosbasik}}
+    \keyvalue{LinkedIn}{\href{http://www.linkedin.com/in/peterhenry7}{linkedin.com/in/peterhenry7}}
+    \keyvalue{Resume}{\href{http://goo.gl/H4JVe2}{goo.gl/H4JVe2}}
 \end{minipage}%
 
 
 \section{Objective}
+\begin{sectionbody}
+    Seeking an information technology internship/co-op position to gain
+    experience in applied computer science, system analysis/administration, or
+    application development.
+\end{sectionbody}
 
-Seeking an information technology internship/co-op position to gain experience in applied computer science, system analysis/administration, or application development.
 
 \section{Education}
+\begin{sectionbody}
+    California Institute of Technology, Pasadena, CA \newline
+    Pursuing B.S. degree in Computer Science \newline
+    Class of 2016
+\end{sectionbody}
 
-California Institute of Technology, Pasadena, CA \newline
-Pursuing B.S. degree in Computer Science \newline
-Class of 2016
 
 \section{Technical Skills}
+\begin{adjustwidth}{1em}{0em}
+    \begin{minipage}[t]{.195\textwidth}
+        Python
 
-Python, Java, SQL, C/C++, HTML/CSS, JavaScript, PHP, some Assembly (IA32 and ARM7), Scheme, Haskell
+        Java
 
-Knowledge of Linux (CentOS, Ubuntu, Debian), Windows and OSX environments and commands
+        SQL
 
-Familiar with Git, Vim, LaTeX, VirtualBox, VMWare, Mathematica, MS Office, Adobe CS
+        C/C++
 
-Fluent in English and French
+        HTML/CSS
+
+    \end{minipage}%
+    \begin{minipage}[t]{.195\textwidth}
+        JavaScript
+
+        PHP
+
+        IA32 / ARM7
+
+        Scheme
+
+        Haskell
+    \end{minipage}%
+    \begin{minipage}[t]{.195\textwidth}
+        CentOS
+
+        Ubuntu
+
+        Debian
+
+        Windows
+
+        OSX
+    \end{minipage}%
+    \begin{minipage}[t]{.195\textwidth}
+        Git
+
+        \LaTeX
+
+        Vim
+
+        Mathematica
+
+        VirtualBox
+    \end{minipage}%
+    \begin{minipage}[t]{.195\textwidth}
+        English
+
+        French
+
+        MS Office
+
+        Adobe CS
+    \end{minipage}%
+\end{adjustwidth}
+
 
 \section{Projects}
+\begin{projectenv}
+    \pjtitle{\href{http://whsales.peterhenry.net}{whsales.peterhenry.net}}
+    \pjtime{Summer 2015 (in progress)}
+    \pjbody{
+        Rewrite and update of existing website used by “Eve Online” players to
+        publically post wormhole sale listings\\
+        %
+        Adds significantly more granular order sorting/searching capability and
+        more accurate input validation\\
+        %
+        Interfaces with the Eve Online API and a number of third-party
+        crowdsourced datasets not distributed officially\\
+        %
+        Back-end written in Python (Django) and SQLite3; front-end in HTML/CSS,
+        Javascript/jQuery and Bootstrap%
+    }%
+\end{projectenv}%
+
+\begin{projectenv}
+    \pjtitle{\href{https://github.com/mosbasik/moviepicker}{github.com/mosbasik/moviepicker}}
+    \pjtime{Summer 2015 (in progress)}
+    \pjbody{
+        Webapp designed to answer the question “What should we watch
+        tonight?”
+        %
+        Users select an arbitrarily large set of movies that they are
+        personally interested in watching
+        %
+        Aggregates of users’ movie selections are used to figure out movies
+        that arbitrary user groups want to watch\\
+        %
+        Interfaces with the IMDB dataset via the OmniDB API\\
+        %
+        Back-end written in Python (Django) and SQLite3; front-end in HTML/CSS,
+        Javascript/jQuery and Bootstrap\\
+    }
+\end{projectenv}
+
 
 \section{Work Experience}
 
